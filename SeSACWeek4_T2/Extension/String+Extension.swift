@@ -1,5 +1,5 @@
 //
-//  DateFormatter+Extension.swift
+//  String+Extension.swift
 //  SeSACWeek4_T2
 //
 //  Created by ez on 7/20/25.

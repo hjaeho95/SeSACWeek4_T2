@@ -44,15 +44,7 @@ class TravelTalkTableViewCell: UITableViewCell {
         
         guard let date = rowData.chatList.last?.date else { return }
         
-//        let innerDateFormatter = DateFormatter()
-//        innerDateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
-//        let innerDate = innerDateFormatter.date(from: date)
-//        
-//        let outerDateFormatter = DateFormatter()
-//        outerDateFormatter.dateFormat = "yy.MM.dd"
-//        let outerDate = outerDateFormatter.string(from: innerDate!)
-        
-        dateLabel.text = date
+        dateLabel.text = date.convertDateFormat(innerDateFormat: "yyyy-MM-dd HH:mm", outerDateFormat: "yy.MM.dd")
     }
     
     private func configureProfileImageView(_ rowData: ChatRoom) {

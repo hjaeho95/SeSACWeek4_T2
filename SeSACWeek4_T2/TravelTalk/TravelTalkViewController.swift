@@ -36,8 +36,14 @@ class TravelTalkViewController: UIViewController, UITableViewDelegate, UITableVi
     private func initUI() {
         navigationItem.title = "TRAVEL TALK"
         
+        initBackButton()
         initTalkTableView()
         initTalkSearchBar()
+    }
+    
+    private func initBackButton() {
+        navigationItem.backButtonTitle = ""
+        navigationItem.backBarButtonItem?.tintColor = .black
     }
     
     private func initTalkTableView() {
@@ -65,7 +71,16 @@ class TravelTalkViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
+        if let chatViewController = storyboard?.instantiateViewController(withIdentifier: ChatViewController.identifier) as? ChatViewController{
+            let talk = talks[indexPath.row]
+            chatViewController.chats = talk.chatList
+            chatViewController.chatTitle = talk.chatroomName
+            chatViewController.id = talk.chatroomId
+            
+            navigationController?.pushViewController(chatViewController, animated: true)
+        }
+        
+        
     }
 
     @objc private func talkSearchBarEditingDidEndOnExit(sender: UITextField) {

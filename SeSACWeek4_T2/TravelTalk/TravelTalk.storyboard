@@ -31,14 +31,82 @@
                     <view key="view" contentMode="scaleToFill" id="zSu-Bp-Hcv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="HvV-ti-YPT">
+                                <rect key="frame" x="8" y="162" width="377" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="JCS-vE-d80" id="bfe-ch-reA"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mCG-bZ-C09">
+                                <rect key="frame" x="0.0" y="218" width="393" height="566"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Ovq-MR-RvI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ovq-MR-RvI" firstAttribute="bottom" secondItem="mCG-bZ-C09" secondAttribute="bottom" id="4pK-kD-20p"/>
+                            <constraint firstItem="Ovq-MR-RvI" firstAttribute="trailing" secondItem="mCG-bZ-C09" secondAttribute="trailing" id="EbJ-wc-BC6"/>
+                            <constraint firstItem="HvV-ti-YPT" firstAttribute="leading" secondItem="Ovq-MR-RvI" secondAttribute="leading" constant="8" id="LBT-Vq-7cn"/>
+                            <constraint firstItem="mCG-bZ-C09" firstAttribute="top" secondItem="HvV-ti-YPT" secondAttribute="bottom" id="RQx-Wh-TAB"/>
+                            <constraint firstItem="mCG-bZ-C09" firstAttribute="leading" secondItem="Ovq-MR-RvI" secondAttribute="leading" id="a93-7h-Xxu"/>
+                            <constraint firstItem="Ovq-MR-RvI" firstAttribute="trailing" secondItem="HvV-ti-YPT" secondAttribute="trailing" constant="8" id="ypa-ay-wT2"/>
+                            <constraint firstItem="HvV-ti-YPT" firstAttribute="top" secondItem="Ovq-MR-RvI" secondAttribute="top" id="zTP-5T-CYa"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nJ3-Df-glu"/>
+                    <connections>
+                        <outlet property="talkSearchBar" destination="HvV-ti-YPT" id="mfa-qu-KEm"/>
+                        <outlet property="talkTableView" destination="mCG-bZ-C09" id="0nd-5e-fmG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqh-sg-5j7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="706" y="-92"/>
+            <point key="canvasLocation" x="704.58015267175574" y="-92.253521126760575"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="0ye-OE-RFd">
+            <objects>
+                <viewController id="55S-mz-Xs2" customClass="ChatViewController" customModule="SeSACWeek4_T2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QNy-P8-EF7">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="obU-fd-vgo">
+                                <rect key="frame" x="0.0" y="118" width="393" height="606"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bed-bQ-EEq">
+                                <rect key="frame" x="0.0" y="724" width="393" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="22y-KY-XbC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7cf-9G-43C"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7cf-9G-43C" firstAttribute="trailing" secondItem="obU-fd-vgo" secondAttribute="trailing" id="IJR-vr-0Ir"/>
+                            <constraint firstItem="Bed-bQ-EEq" firstAttribute="top" secondItem="obU-fd-vgo" secondAttribute="bottom" id="Sdr-Bq-CJm"/>
+                            <constraint firstItem="obU-fd-vgo" firstAttribute="leading" secondItem="7cf-9G-43C" secondAttribute="leading" id="Zm5-HT-AdF"/>
+                            <constraint firstItem="7cf-9G-43C" firstAttribute="trailing" secondItem="Bed-bQ-EEq" secondAttribute="trailing" id="btu-eH-ACr"/>
+                            <constraint firstItem="obU-fd-vgo" firstAttribute="top" secondItem="7cf-9G-43C" secondAttribute="top" id="fh4-xp-QyT"/>
+                            <constraint firstItem="7cf-9G-43C" firstAttribute="bottom" secondItem="Bed-bQ-EEq" secondAttribute="bottom" id="ozj-Gw-Kfh"/>
+                            <constraint firstItem="Bed-bQ-EEq" firstAttribute="leading" secondItem="7cf-9G-43C" secondAttribute="leading" id="yJT-9h-bm1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chatTableView" destination="obU-fd-vgo" id="Ota-z3-Qoy"/>
+                        <outlet property="chatTextField" destination="Bed-bQ-EEq" id="2E5-r5-XKR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="if2-6V-FDx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1714" y="-92"/>
         </scene>
     </scenes>
     <resources>

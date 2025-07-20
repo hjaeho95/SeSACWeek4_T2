@@ -7,23 +7,69 @@
 
 import UIKit
 
-class TravelTalkViewController: UIViewController {
-
+class TravelTalkViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    @IBOutlet var talkTableView: UITableView!
+    
+    @IBOutlet var talkSearchBar: UISearchBar!
+    
+    let talks = ChatList.list
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        configure()
+        
+        initUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configure() {
+        talkTableView.delegate = self
+        talkTableView.dataSource = self
+        
+        talkTableView.register(UINib(nibName: TravelTalkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TravelTalkTableViewCell.identifier)
+        
+        talkTableView.rowHeight = 90
     }
-    */
+    
+    private func initUI() {
+        navigationItem.title = "TRAVEL TALK"
+        
+        initTalkTableView()
+        initTalkSearchBar()
+    }
+    
+    private func initTalkTableView() {
+        talkTableView.separatorStyle = .none
+    }
+    
+    private func initTalkSearchBar() {
+        talkSearchBar.placeholder = "친구 이름을 검색해보세요."
+        
+        talkSearchBar.searchTextField.addTarget(self, action: #selector(talkSearchBarEditingDidEndOnExit), for: .editingDidEndOnExit)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return talks.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkTableViewCell.identifier, for: indexPath) as! TravelTalkTableViewCell
+        
+        let talk = talks[indexPath.row]
+        
+        cell.configureUI(rowData: talk)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(#function)
+    }
 
+    @objc private func talkSearchBarEditingDidEndOnExit(sender: UITextField) {
+        print(#function)
+        print(sender.text)
+    }
 }

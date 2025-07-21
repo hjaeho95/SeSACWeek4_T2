@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4s-lh-tQk">
-                        <rect key="frame" x="16" y="16" width="288" height="123"/>
+                        <rect key="frame" x="16" y="8" width="288" height="139"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HXf-iu-JbD">
                                 <rect key="frame" x="8" y="0.0" width="50" height="50"/>
@@ -36,17 +36,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpG-v5-sUt">
-                                <rect key="frame" x="66" y="30" width="41.333333333333343" height="85"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpG-v5-sUt" customClass="PaddingUILabel" customModule="SeSACWeek4_T2" customModuleProvider="target">
+                                <rect key="frame" x="66" y="30" width="41.333333333333343" height="101"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4B-rn-mfy">
-                                <rect key="frame" x="115.33333333333334" y="94" width="60" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="qUO-kt-vdz"/>
-                                </constraints>
+                                <rect key="frame" x="113.33333333333333" y="110" width="41.333333333333329" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -60,7 +57,7 @@
                             <constraint firstItem="lik-nr-P4D" firstAttribute="leading" secondItem="HXf-iu-JbD" secondAttribute="trailing" constant="8" id="Jcd-VR-gpy"/>
                             <constraint firstAttribute="bottom" secondItem="w4B-rn-mfy" secondAttribute="bottom" constant="8" id="Ohh-zD-Wt7"/>
                             <constraint firstItem="kpG-v5-sUt" firstAttribute="leading" secondItem="HXf-iu-JbD" secondAttribute="trailing" constant="8" id="SnN-5h-0s6"/>
-                            <constraint firstItem="w4B-rn-mfy" firstAttribute="leading" secondItem="kpG-v5-sUt" secondAttribute="trailing" constant="8" id="ebj-De-ugy"/>
+                            <constraint firstItem="w4B-rn-mfy" firstAttribute="leading" secondItem="kpG-v5-sUt" secondAttribute="trailing" constant="6" id="ebj-De-ugy"/>
                             <constraint firstItem="HXf-iu-JbD" firstAttribute="leading" secondItem="S4s-lh-tQk" secondAttribute="leading" constant="8" id="fdu-mm-x8Q"/>
                             <constraint firstItem="kpG-v5-sUt" firstAttribute="top" secondItem="lik-nr-P4D" secondAttribute="bottom" constant="8" id="fpR-ea-raW"/>
                             <constraint firstItem="HXf-iu-JbD" firstAttribute="top" secondItem="S4s-lh-tQk" secondAttribute="top" id="uJC-JU-IKh"/>
@@ -70,8 +67,8 @@
                 <constraints>
                     <constraint firstItem="S4s-lh-tQk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="7js-Q0-u7S"/>
                     <constraint firstAttribute="trailing" secondItem="S4s-lh-tQk" secondAttribute="trailing" constant="16" id="Xge-3P-oev"/>
-                    <constraint firstItem="S4s-lh-tQk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="hax-Ut-bHJ"/>
-                    <constraint firstAttribute="bottom" secondItem="S4s-lh-tQk" secondAttribute="bottom" constant="16" id="tH6-3b-YBz"/>
+                    <constraint firstItem="S4s-lh-tQk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="hax-Ut-bHJ"/>
+                    <constraint firstAttribute="bottom" secondItem="S4s-lh-tQk" secondAttribute="bottom" constant="8" id="tH6-3b-YBz"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -25,6 +25,11 @@ class ChatTableViewCell: UITableViewCell {
         initUI()
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        initProfileImageView()
+    }
+    
     func configureUI(rowData: Chat) {
         configureProfileImageView(rowData)
         configureNameLabel(rowData)
@@ -65,10 +70,7 @@ class ChatTableViewCell: UITableViewCell {
     
     private func initProfileImageView() {
         profileImageView.clipsToBounds = true
-        
-        DispatchQueue.main.async {
-            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.width / 2
-        }
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
     }
     
     private func initNameLabel() {
@@ -88,7 +90,8 @@ class ChatTableViewCell: UITableViewCell {
     }
     
     private func initTimeLabel() {
-        timeLabel.font = .systemFont(ofSize: 12)
+        timeLabel.font = .systemFont(ofSize: 10)
+        timeLabel.textColor = .gray
         timeLabel.numberOfLines = 1
     }
     

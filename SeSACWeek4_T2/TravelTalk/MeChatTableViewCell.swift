@@ -60,7 +60,8 @@ class MeChatTableViewCell: UITableViewCell {
     }
     
     private func initTimeLabel() {
-        timeLabel.font = .systemFont(ofSize: 12)
+        timeLabel.font = .systemFont(ofSize: 10)
+        timeLabel.textColor = .gray
         timeLabel.numberOfLines = 1
     }
     

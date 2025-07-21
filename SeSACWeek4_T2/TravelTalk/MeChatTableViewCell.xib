@@ -18,22 +18,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umv-G0-GRA">
-                        <rect key="frame" x="16" y="16" width="288" height="63"/>
+                        <rect key="frame" x="16" y="8" width="288" height="79"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzY-1V-dzR">
-                                <rect key="frame" x="238.66666666666666" y="2" width="41.333333333333343" height="53"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" id="HMu-2e-YV3"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzY-1V-dzR" customClass="PaddingUILabel" customModule="SeSACWeek4_T2" customModuleProvider="target">
+                                <rect key="frame" x="238.66666666666666" y="2" width="41.333333333333343" height="69"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvp-tp-bS7">
-                                <rect key="frame" x="170.66666666666666" y="34" width="60" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Ihw-jY-3pV"/>
-                                </constraints>
+                                <rect key="frame" x="191.33333333333334" y="50" width="41.333333333333343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -41,7 +35,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xzY-1V-dzR" firstAttribute="leading" secondItem="rvp-tp-bS7" secondAttribute="trailing" constant="8" id="GqH-T5-U06"/>
+                            <constraint firstItem="xzY-1V-dzR" firstAttribute="leading" secondItem="rvp-tp-bS7" secondAttribute="trailing" constant="6" id="GqH-T5-U06"/>
                             <constraint firstItem="xzY-1V-dzR" firstAttribute="width" relation="lessThanOrEqual" secondItem="umv-G0-GRA" secondAttribute="width" constant="-120" id="Jgs-lc-YQf"/>
                             <constraint firstAttribute="bottom" secondItem="xzY-1V-dzR" secondAttribute="bottom" constant="8" id="U6k-Jw-5tx"/>
                             <constraint firstAttribute="trailing" secondItem="xzY-1V-dzR" secondAttribute="trailing" constant="8" id="UkW-Ba-s5w"/>
@@ -53,8 +47,8 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="umv-G0-GRA" secondAttribute="trailing" constant="16" id="LOm-aO-cGb"/>
                     <constraint firstItem="umv-G0-GRA" firstAttribute="leading" secondItem="3xl-KU-cJJ" secondAttribute="leading" constant="16" id="MqL-cO-gyQ"/>
-                    <constraint firstItem="umv-G0-GRA" firstAttribute="top" secondItem="3xl-KU-cJJ" secondAttribute="top" constant="16" id="Nwl-ZA-gg5"/>
-                    <constraint firstAttribute="bottom" secondItem="umv-G0-GRA" secondAttribute="bottom" constant="16" id="c9G-j6-ndQ"/>
+                    <constraint firstItem="umv-G0-GRA" firstAttribute="top" secondItem="3xl-KU-cJJ" secondAttribute="top" constant="8" id="Nwl-ZA-gg5"/>
+                    <constraint firstAttribute="bottom" secondItem="umv-G0-GRA" secondAttribute="bottom" constant="8" id="c9G-j6-ndQ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="agD-xf-sce"/>

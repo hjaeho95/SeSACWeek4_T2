@@ -25,6 +25,11 @@ class TravelTalkTableViewCell: UITableViewCell {
         initUI()
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        initProfileImageView()
+    }
+    
     func configureUI(rowData: ChatRoom) {
         configureNameLabel(rowData)
         configureMessageLabel(rowData)
@@ -83,9 +88,6 @@ class TravelTalkTableViewCell: UITableViewCell {
     
     private func initProfileImageView() {
         profileImageView.clipsToBounds = true
-        
-        DispatchQueue.main.async {
-            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.width / 2
-        }
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
     }
 }

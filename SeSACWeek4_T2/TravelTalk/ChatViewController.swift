@@ -20,6 +20,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     var chats: [Chat] = []
     var chatTitle = ""
     var id = -1
+    var lastDate = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +58,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         chatTextView.clipsToBounds = true
         chatTextView.layer.cornerRadius = 5
+        
+        chatTextView.alignTextVerticallyInContainer()
     }
     
     private func initChatButton() {
@@ -80,11 +83,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             cell.configureUI(rowData: chat)
             
+            dateSeparator(cell: cell, chat: chat)
+            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.identifier, for: indexPath) as! ChatTableViewCell
             
             cell.configureUI(rowData: chat)
+            
+            dateSeparator(cell: cell, chat: chat)
             
             return cell
         }
@@ -94,7 +101,42 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         view.endEditing(true)
     }
     
-    func scrollToBottom(){
+    func dateSeparator(cell: UITableViewCell, chat: Chat) {
+        let date = String(chat.date.split(separator: " ")[0])
+        
+        if lastDate == "" {
+            lastDate = date
+            return
+        }
+        
+        if lastDate != date {
+            // 기존 separator 제거 방지
+            cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.width, bottom: 0, right: 0)
+            
+            // 이미 추가된 separatorView 제거
+            cell.contentView.viewWithTag(999)?.removeFromSuperview()
+            
+            // 하단에 separatorView 추가
+            let separatorHeight: CGFloat = 1
+            let separatorView = UIView()
+            separatorView.backgroundColor = .systemGray5
+            separatorView.tag = 999
+            separatorView.translatesAutoresizingMaskIntoConstraints = false
+            
+            cell.contentView.addSubview(separatorView)
+            
+            NSLayoutConstraint.activate([
+                separatorView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 24),
+                separatorView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -24),
+                separatorView.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
+                separatorView.heightAnchor.constraint(equalToConstant: separatorHeight)
+            ])
+            
+            lastDate = date
+        }
+    }
+    
+    func scrollToBottom() {
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: self.chats.count - 1, section: 0)
             self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
@@ -106,7 +148,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if text.trimmingCharacters(in: .whitespaces).isEmpty { return }
         
-        chats.append(Chat(user: ChatList.me, date: "2025-07-12 23:42", message: text))
+        let date = Date.now
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        chats.append(Chat(user: ChatList.me, date: dateFormatter.string(from: date), message: text))
         
         chatTextView.text = ""
         

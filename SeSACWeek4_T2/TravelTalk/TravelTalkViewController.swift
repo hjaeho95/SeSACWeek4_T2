@@ -15,6 +15,7 @@ class TravelTalkViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var talkSearchBar: UISearchBar!
     
     let talks = ChatList.list
+    var filteredTalks: [ChatRoom] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,8 @@ class TravelTalkViewController: UIViewController, UITableViewDelegate, UITableVi
         configure()
         
         initUI()
+        
+        filteredTalks = talks
     }
     
     private func configure() {
@@ -43,7 +46,7 @@ class TravelTalkViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func initBackButton() {
         navigationItem.backButtonTitle = ""
-        navigationItem.backBarButtonItem?.tintColor = .black
+        navigationController?.navigationBar.tintColor = .black
     }
     
     private func initTalkTableView() {
@@ -57,13 +60,13 @@ class TravelTalkViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return talks.count
+        return filteredTalks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkTableViewCell.identifier, for: indexPath) as! TravelTalkTableViewCell
         
-        let talk = talks[indexPath.row]
+        let talk = filteredTalks[indexPath.row]
         
         cell.configureUI(rowData: talk)
         
@@ -72,19 +75,43 @@ class TravelTalkViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let chatViewController = storyboard?.instantiateViewController(withIdentifier: ChatViewController.identifier) as? ChatViewController{
-            let talk = talks[indexPath.row]
+            let talk = filteredTalks[indexPath.row]
             chatViewController.chats = talk.chatList
             chatViewController.chatTitle = talk.chatroomName
             chatViewController.id = talk.chatroomId
             
             navigationController?.pushViewController(chatViewController, animated: true)
         }
-        
-        
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(true)
     }
 
     @objc private func talkSearchBarEditingDidEndOnExit(sender: UITextField) {
-        print(#function)
-        print(sender.text)
+        guard let text = sender.text else { return }
+        
+        filteredTalks = talks
+        
+        if text == "" {
+            talkTableView.reloadData()
+            return
+        }
+        
+        let modifiedTalks = filteredTalks
+        
+        filteredTalks.removeAll()
+        
+        for room in modifiedTalks {
+            for chat in room.chatList {
+                if chat.user.name.localizedCaseInsensitiveContains(text) {
+                    print(chat.user.name)
+                    filteredTalks.append(room)
+                    break
+                }
+            }
+        }
+        
+        talkTableView.reloadData()
     }
 }

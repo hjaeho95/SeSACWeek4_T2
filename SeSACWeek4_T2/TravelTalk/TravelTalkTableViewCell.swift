@@ -11,13 +11,13 @@ class TravelTalkTableViewCell: UITableViewCell {
 
     static let identifier = "TravelTalkTableViewCell"
     
-    @IBOutlet var mainUIView: UIView!
+    @IBOutlet private var mainUIView: UIView!
     
-    @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet private var profileImageView: UIImageView!
     
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var messageLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var messageLabel: UILabel!
+    @IBOutlet private var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,12 +29,22 @@ class TravelTalkTableViewCell: UITableViewCell {
         super.draw(rect)
         initProfileImageView()
     }
-    
+}
+
+extension TravelTalkTableViewCell: MyTableViewCellProtocol {
     func configureUI(rowData: ChatRoom) {
         configureNameLabel(rowData)
         configureMessageLabel(rowData)
         configureDateLabel(rowData)
         configureProfileImageView(rowData)
+    }
+    
+    func initUI() {
+        initMainUIView()
+        initNameLabel()
+        initMessageLabel()
+        initDateLabel()
+        initProfileImageView()
     }
     
     private func configureNameLabel(_ rowData: ChatRoom) {
@@ -54,14 +64,6 @@ class TravelTalkTableViewCell: UITableViewCell {
     
     private func configureProfileImageView(_ rowData: ChatRoom) {
         profileImageView.image = UIImage(named: rowData.chatroomImage)
-    }
-
-    private func initUI() {
-        initMainUIView()
-        initNameLabel()
-        initMessageLabel()
-        initDateLabel()
-        initProfileImageView()
     }
     
     private func initMainUIView() {

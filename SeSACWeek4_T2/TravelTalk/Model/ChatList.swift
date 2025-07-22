@@ -193,8 +193,7 @@ struct ChatList {
                     Chat(user: other_friend,
                          date: "2025-07-12 13:45",
                          message: "내일 모닝콜 해주실분~~"),
-                 ]
-                ),
+                 ]),
         ChatRoom(chatroomId: 8,
                  chatroomImage: "Simsim",
                  chatroomName: "심심이님 방",
@@ -223,7 +222,20 @@ struct ChatList {
                     Chat(user: simsim,
                          date: "2025-07-11 09:37",
                          message: "아닛 주말에 과제라닛"),
-                 ]
-                )
+                 ])
     ]
+    
+    static var filteredList: [ChatRoom] = list
+    
+    static func fillFilteredList() {
+        filteredList = list
+    }
+    
+    static func searchUsers(_ text: String) {
+        filteredList = filteredList.filter { room in
+            room.chatList.contains { chat in
+                chat.user.name.localizedCaseInsensitiveContains(text)
+            }
+        }
+    }
 }

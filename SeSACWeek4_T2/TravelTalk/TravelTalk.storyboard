@@ -58,8 +58,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="nJ3-Df-glu"/>
                     <connections>
+                        <outlet property="myTableView" destination="mCG-bZ-C09" id="0nd-5e-fmG"/>
                         <outlet property="talkSearchBar" destination="HvV-ti-YPT" id="mfa-qu-KEm"/>
-                        <outlet property="talkTableView" destination="mCG-bZ-C09" id="0nd-5e-fmG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqh-sg-5j7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -116,8 +116,8 @@
                     </view>
                     <connections>
                         <outlet property="chatButton" destination="OoR-mB-5fR" id="N8k-Fg-avR"/>
-                        <outlet property="chatTableView" destination="obU-fd-vgo" id="Ota-z3-Qoy"/>
                         <outlet property="chatTextView" destination="gPv-af-eea" id="7xe-i4-udT"/>
+                        <outlet property="myTableView" destination="obU-fd-vgo" id="Ota-z3-Qoy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="if2-6V-FDx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

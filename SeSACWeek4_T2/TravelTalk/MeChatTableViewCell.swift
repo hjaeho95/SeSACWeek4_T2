@@ -11,10 +11,10 @@ class MeChatTableViewCell: UITableViewCell {
 
     static let identifier = "MeChatTableViewCell"
     
-    @IBOutlet var mainUIView: UIView!
+    @IBOutlet private var mainUIView: UIView!
     
-    @IBOutlet var messageLabel: UILabel!
-    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet private var messageLabel: UILabel!
+    @IBOutlet private var timeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,9 +22,18 @@ class MeChatTableViewCell: UITableViewCell {
         initUI()
     }
     
+}
+
+extension MeChatTableViewCell: MyTableViewCellProtocol {
     func configureUI(rowData: Chat) {
         configureMessageLabel(rowData)
         configureTimeLabel(rowData)
+    }
+    
+    func initUI() {
+        initMainUIView()
+        initMessageLabel()
+        initTimeLabel()
     }
     
     private func configureMessageLabel(_ rowData: Chat) {
@@ -33,13 +42,6 @@ class MeChatTableViewCell: UITableViewCell {
     
     private func configureTimeLabel(_ rowData: Chat) {
         timeLabel.text = rowData.date.convertDateFormat(innerDateFormat: "yyyy-MM-dd HH:mm", outerDateFormat: "hh:mm a", locale: Locale(identifier: "ko-KR"))
-    }
-    
-    
-    private func initUI() {
-        initMainUIView()
-        initMessageLabel()
-        initTimeLabel()
     }
     
     private func initMainUIView() {
@@ -64,5 +66,4 @@ class MeChatTableViewCell: UITableViewCell {
         timeLabel.textColor = .gray
         timeLabel.numberOfLines = 1
     }
-    
 }

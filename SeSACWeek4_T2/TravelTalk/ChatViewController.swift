@@ -7,19 +7,18 @@
 
 import UIKit
 
-class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatViewController: UIViewController {
     
     static let identifier = "ChatViewController"
     
-    @IBOutlet var chatTableView: UITableView!
+    @IBOutlet var myTableView: UITableView!
     
-    @IBOutlet var chatTextView: UITextView!
+    @IBOutlet private var chatTextView: UITextView!
     
-    @IBOutlet var chatButton: UIButton!
+    @IBOutlet private var chatButton: UIButton!
     
-    var chats: [Chat] = []
+    var datas: [Chat] = []
     var chatTitle = ""
-    var id = -1
     var lastDate = ""
     
     override func viewDidLoad() {
@@ -28,77 +27,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         configure()
         
         initUI()
-    }
-    
-    private func configure() {
-        chatTableView.delegate = self
-        chatTableView.dataSource = self
-        
-        chatTableView.register(UINib(nibName: ChatTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ChatTableViewCell.identifier)
-        
-        chatTableView.register(UINib(nibName: MeChatTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MeChatTableViewCell.identifier)
-        
-        scrollToBottom()
-    }
-    
-    private func initUI() {
-        navigationItem.title = chatTitle
-        chatTableView.separatorStyle = .none
-        
-        initChatTextView()
-        initChatButton()
-    }
-    
-    private func initChatTextView() {
-        chatTextView.text = ""
-        
-        chatTextView.backgroundColor = .systemGray6
-        
-        chatTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 50)
-        
-        chatTextView.clipsToBounds = true
-        chatTextView.layer.cornerRadius = 5
-        
-        chatTextView.alignTextVerticallyInContainer()
-    }
-    
-    private func initChatButton() {
-        chatButton.setTitle("", for: .normal)
-        chatButton.setImage(UIImage(systemName: "arrow.up.circle.fill"), for: .normal)
-        chatButton.tintColor = .gray
-        
-        chatButton.addTarget(self, action: #selector(chatButtonTapped), for: .touchUpInside)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chats.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let chat = chats[indexPath.row]
-        
-        if chat.user.name == "김새싹" {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MeChatTableViewCell.identifier, for: indexPath) as! MeChatTableViewCell
-            
-            cell.configureUI(rowData: chat)
-            
-            dateSeparator(cell: cell, chat: chat)
-            
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.identifier, for: indexPath) as! ChatTableViewCell
-            
-            cell.configureUI(rowData: chat)
-            
-            dateSeparator(cell: cell, chat: chat)
-            
-            return cell
-        }
-    }
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        view.endEditing(true)
     }
     
     func dateSeparator(cell: UITableViewCell, chat: Chat) {
@@ -138,8 +66,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func scrollToBottom() {
         DispatchQueue.main.async {
-            let indexPath = IndexPath(row: self.chats.count - 1, section: 0)
-            self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            let indexPath = IndexPath(row: self.datas.count - 1, section: 0)
+            self.myTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         }
     }
     
@@ -152,12 +80,85 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         
-        chats.append(Chat(user: ChatList.me, date: dateFormatter.string(from: date), message: text))
+        datas.append(Chat(user: ChatList.me, date: dateFormatter.string(from: date), message: text))
         
         chatTextView.text = ""
         
-        chatTableView.reloadData()
+        myTableView.reloadData()
         
         scrollToBottom()
+    }
+}
+
+extension ChatViewController: MyTableViewProtocol {
+    func configure() {
+        myTableView.delegate = self
+        myTableView.dataSource = self
+        
+        myTableView.register(UINib(nibName: ChatTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ChatTableViewCell.identifier)
+        
+        myTableView.register(UINib(nibName: MeChatTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MeChatTableViewCell.identifier)
+        
+        scrollToBottom()
+    }
+    
+    func initUI() {
+        navigationItem.title = chatTitle
+        myTableView.separatorStyle = .none
+        
+        initChatTextView()
+        initChatButton()
+    }
+    
+    private func initChatTextView() {
+        chatTextView.text = ""
+        
+        chatTextView.backgroundColor = .systemGray6
+        
+        chatTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 50)
+        
+        chatTextView.clipsToBounds = true
+        chatTextView.layer.cornerRadius = 5
+        
+        chatTextView.alignTextVerticallyInContainer()
+    }
+    
+    private func initChatButton() {
+        chatButton.setTitle("", for: .normal)
+        chatButton.setImage(UIImage(systemName: "arrow.up.circle.fill"), for: .normal)
+        chatButton.tintColor = .gray
+        
+        chatButton.addTarget(self, action: #selector(chatButtonTapped), for: .touchUpInside)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return datas.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let chat = datas[indexPath.row]
+        
+        if chat.user.name == "김새싹" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MeChatTableViewCell.identifier, for: indexPath) as! MeChatTableViewCell
+            
+            cell.configureUI(rowData: chat)
+            
+            dateSeparator(cell: cell, chat: chat)
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.identifier, for: indexPath) as! ChatTableViewCell
+            
+            cell.configureUI(rowData: chat)
+            
+            dateSeparator(cell: cell, chat: chat)
+            
+            return cell
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(true)
     }
 }

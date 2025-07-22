@@ -11,13 +11,13 @@ class ChatTableViewCell: UITableViewCell {
 
     static let identifier = "ChatTableViewCell"
     
-    @IBOutlet var mainUIView: UIView!
+    @IBOutlet private var mainUIView: UIView!
     
-    @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet private var profileImageView: UIImageView!
     
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var messageLabel: UILabel!
-    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var messageLabel: UILabel!
+    @IBOutlet private var timeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +28,17 @@ class ChatTableViewCell: UITableViewCell {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         initProfileImageView()
+    }
+    
+}
+
+extension ChatTableViewCell: MyTableViewCellProtocol {
+    func initUI() {
+        initMainUIView()
+        initProfileImageView()
+        initNameLabel()
+        initMessageLabel()
+        initTimeLabel()
     }
     
     func configureUI(rowData: Chat) {
@@ -52,16 +63,6 @@ class ChatTableViewCell: UITableViewCell {
     private func configureTimeLabel(_ rowData: Chat) {
         
         timeLabel.text = rowData.date.convertDateFormat(innerDateFormat: "yyyy-MM-dd HH:mm", outerDateFormat: "hh:mm a", locale: Locale(identifier: "ko-KR"))
-        
-    }
-    
-    
-    private func initUI() {        
-        initMainUIView()
-        initProfileImageView()
-        initNameLabel()
-        initMessageLabel()
-        initTimeLabel()
     }
     
     private func initMainUIView() {
@@ -94,5 +95,4 @@ class ChatTableViewCell: UITableViewCell {
         timeLabel.textColor = .gray
         timeLabel.numberOfLines = 1
     }
-    
 }
